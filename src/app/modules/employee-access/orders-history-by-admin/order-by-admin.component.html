@@ -1,0 +1,156 @@
+<app-header></app-header>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="form-group ">
+                    <label for="userId" class="text-uppercase fw-bold">Select retailer: </label>
+                    <ng-multiselect-dropdown [placeholder]="'Select Retailer for orderlist'"
+                        [settings]="salesmandropdownSettings" [data]="salemanList" [(ngModel)]="selectedItems"
+                        (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group ">
+                    <label for="userId" class="text-uppercase fw-bold">filter: </label>
+                    <ng-multiselect-dropdown [placeholder]="'Select orderlist'" [settings]="dropdownSettings"
+                        [data]="statusmasterdata" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
+                </div>
+            </div>
+            <!-- <div class="col-md-4">
+                <input type="form-control me-2" (keyup)="search($event)" type="search" placeholder="search"
+                    arial-label="search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <ul>
+                    <li *ngFor="let item of searchresult">
+                        {{item.name}}
+                    </li>
+                </ul>
+            </div> -->
+
+
+
+            <div class="col-md-4">
+                <div class="form-group ">
+                    <label for="userId" class="text-uppercase fw-bold">Search: </label>
+                    <input type="text" [placeholder]="'search'" arial-label="search" [(ngModel)]="searchstring">
+                    <button class="btn btn-outline-success" type="submit" (click)="filterorders()">Search</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="col-md-12" *ngIf="user && user.Role <= 8">
+            <div class="form-group">
+                <label for="username" class="">Search Retailer by name, mobile or address: </label>
+                <input type="text" class="form-control" [(ngModel)]='searchText'
+                    (ngModelChange)='searchModelChanged.next($event)' />
+                <hr>
+            </div>
+            <div class="form-group" *ngIf="customerList && customerList.length">
+                <label for="userId" class="text-uppercase">Select Retailer: </label>
+                <label for="userId" class="text-uppercase pull-right" *ngIf="SelectedUser && user && user.Role <= 6"
+                    (click)="passwordReset()"><button class="btn btn-sm btn-outline-primary">Reset Password</button>
+                </label>
+                <select data-live-search="true" [(ngModel)]="SelectedUser" (ngModelChange)='getOrders()'
+                    class="form-control" name="userId" class="form-control">
+                    <option value="">All</option>
+                    <option [ngValue]="item" *ngFor="let item of customerList">{{item.name}}/ {{item.address_1}}/
+                        {{item.mob_phone}} / {{item.password ? item.password : ''}}
+                    </option>
+                </select>
+            </div>
+        </div> -->
+        <!-- <div class="input-group mb-3 col-md-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Count</span>
+            </div>
+            <input type="number" (input)="getOrders()" [(ngModel)]="Count" class="form-control rounded"
+                placeholder="Search Order" aria-label="Search" aria-describedby="search-addon" />
+        </div> -->
+        <!-- <div class="input-group mb-3 col-md-4">
+            <ng-multiselect-dropdown class="w-100" [(ngModel)]="filterStatus" (ngModelChange)="getOrders()"
+                [settings]="dropdownSettings" [data]="status">
+            </ng-multiselect-dropdown>
+        </div> -->
+        <!-- <div class="col-md-12" *ngIf="pendingPayment">
+            <strong>Total Pending Amount: <b>Rs. {{pendingPayment}}</b> </strong>
+        </div> -->
+
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Items</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of recentorder">
+                        <td scope="row">{{order.order_id}}</td>
+                        <td scope="row">{{order.cName}}</td>
+                        <td scope="row">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <i *ngIf="!showobj[order.order_id]"
+                                            (click)="showobj[order.order_id] = !showobj[order.order_id] ? true : false"
+                                            class="fa fa-eye" aria-hidden="true">
+                                            <br>{{order.order_details.length}} item ke
+                                            {{totalunits(order.order_details)}} units
+                                        </i>
+                                        <i *ngIf="showobj[order.order_id]"
+                                            (click)="showobj[order.order_id] = !showobj[order.order_id] ? true : false"
+                                            class="fa fa-times" aria-hidden="true"></i>
+                                    </div>
+
+                                    <div *ngIf="showobj[order.order_id]" class="col-md-12 text-center">
+                                        <table class="table text-center" id="table">
+                                            <thead class="">
+
+                                                <tr>
+                                                    <th scope="col">Item Id</th>
+                                                    <th scope="col"> Item Name </th>
+                                                    <th scope="col"> Unit cost </th>
+                                                    <th scope="col">Total Amount</th>
+                                                    <th scope="col">Status</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of order.order_details">
+                                                    <td scope="row">{{item.order_id}}</td>
+                                                    <td scope="row">{{item.name}}</td>
+                                                    <td scope="row">{{item.unit_cost}}</td>
+                                                    <td scope="row">{{item.unit_cost*order.units}}</td>
+                                                    <td scope="row">{{item.order_status}}</td>
+                                                    <td scope="row">{{item.order_units}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>

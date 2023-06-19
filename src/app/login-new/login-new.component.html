@@ -1,0 +1,87 @@
+<div class="container-fluid p-0" id="navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-pink">
+    <div class="container-fluid ">
+      <a class="navbar-brand" href="#"> ApniDukan</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item text-white">
+            <a class="nav-link active" aria-current="page" href="#">Login</a>
+          </li>
+          <li class="nav-item text-white">
+            <a class="nav-link" href="#">Signup</a>
+          </li>
+          <li class="nav-item text-white">
+            <a class="nav-link" href="#">Callme</a>
+          </li>
+          <li class="nav-item text-white">
+            <a class="nav-link" href="#">Whatsapp</a>
+          </li>
+          
+          <li class="nav-item text-white">
+            <a class="nav-link disabled">Google Map</a>
+          </li>
+          <li class="nav-item text-white">
+            <a class="nav-link disabled">Install App</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+</div>
+<div class="loginpage">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-4 ms-3">
+        <div class="login text-center mt-5">
+          <h3 class="text-center"> <strong>Login</strong> </h3>
+        </div>
+        
+        <form class=" mt-4 ms-3 text-dark" [formGroup]="InsertForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label>MOBILE</label>
+            <input  type="number" formControlName="Mobile" class="form-control"
+              [ngClass]="{'is-invalid': submitted && f['Mobile'].errors}">
+            <div *ngIf="submitted && f['Mobile'].errors" class="invalid-feedback">
+              <div *ngIf="f['Mobile'].errors['required']">Mobile is required </div>
+              <div *ngIf="f['Mobile'].errors['minlength']">Mobile must be atleast 6 characters
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label>PASSWORD</label>
+            <input  type="text" formControlName="password" class="form-control"
+              [ngClass]="{'is-invalid': submitted && f['password'].errors}">
+            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+              <div *ngIf="f['password'].errors['required']">password is required </div>
+
+            </div>
+          </div>
+
+          <div class="">
+            <a href="javascript:void(0)" class=" text-info" routerLink="/customer/Forgotpassword"> Forgot Password <i
+              class="fa fa-key  text-info" aria-hidden="true"></i></a>
+            
+          </div>
+          <div>
+              <button class="btn btn-primary pull-right bg-grey " type="submit">Submit</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

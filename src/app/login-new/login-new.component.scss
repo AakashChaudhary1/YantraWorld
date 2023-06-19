@@ -1,0 +1,37 @@
+.loginpage{
+background-color: #3f4c6b;
+display: flex;
+background: linear-gradient(to bottom, #333e57, #3f4c6b);
+height: 100%;
+width: 100%;
+}
+
+
+
+.container{
+    background-color: white;
+    display: block;
+    height: 60%;
+    width: 85%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 10px 15px #333e57;
+    
+
+}
+
+.login{
+color: #394561; 
+padding-bottom: 15px;
+border-bottom-style: solid;
+    border-bottom-width: 5.2px;
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 3px;
+ }
+#navbar{
+    color: white;
+}
+
+
+

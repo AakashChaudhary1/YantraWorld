@@ -1,0 +1,145 @@
+{
+  "configVersion": 1,
+  "timestamp": 1687162204232,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/138.3daf1e3c21ed1d89.js",
+        "/150.733f6c147599cb89.js",
+        "/208.45dd7682912c11e6.js",
+        "/220.255468165cf92688.js",
+        "/316.3ba407d13c6ddc83.js",
+        "/335.60d877099ac4d368.js",
+        "/339.159f91eefd2050b4.js",
+        "/354.7015b0c1f10ca81a.js",
+        "/416.16ccd1fafc573ee2.js",
+        "/489.42e3a7ec5e2b24c6.js",
+        "/542.e11c503428c1f217.js",
+        "/632.30301c97c2a0dc12.js",
+        "/735.408a5e9a62f221ec.js",
+        "/776.8575117300e52157.js",
+        "/869.ba41d7420dd1ec8b.js",
+        "/889.9144b70737fabd2c.js",
+        "/common.7f98cc01e25b376d.js",
+        "/favicon.ico",
+        "/index.html",
+        "/main.3e0e5fc23038d7cd.js",
+        "/manifest.webmanifest",
+        "/polyfills.5fe6d4887b8262cd.js",
+        "/runtime.11e16c9166387287.js",
+        "/scripts.6fdc802cf4e4227b.js",
+        "/styles.4b01174a2673f541.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/1.jpg",
+        "/assets/2.gif",
+        "/assets/QRcode.jpeg",
+        "/assets/Ubon-Logo.jpg",
+        "/assets/brands.jpeg",
+        "/assets/icons/Ellipsis-1s-200px.gif",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/icons/loading-buffering.gif",
+        "/assets/scheme/1.jpeg",
+        "/assets/templates/invoice.html",
+        "/assets/yantra-logo.png",
+        "/fontawesome-webfont.8a7cb27d142e3e19.ttf",
+        "/fontawesome-webfont.cf011583fb81df9f.woff",
+        "/fontawesome-webfont.da909aa098b0ee2d.svg",
+        "/fontawesome-webfont.e9955780856cf8aa.woff2"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/138.3daf1e3c21ed1d89.js": "9b8ab9856088cb3e89e434f8b0e9cd4c56af6bf8",
+    "/150.733f6c147599cb89.js": "684598b1bc2a449722eaa5ab930e25d155b10d09",
+    "/208.45dd7682912c11e6.js": "3f99799480faa852ea7cb6810ccb833eeb7741a4",
+    "/220.255468165cf92688.js": "55f4471054c6d6cd8a77abb777ab450652f0b87c",
+    "/316.3ba407d13c6ddc83.js": "4851f6c3cba1822ec2d5726f688c38cec39bc2bc",
+    "/335.60d877099ac4d368.js": "42dcec84d68835e8eab8e1de22acda4db0fc9b09",
+    "/339.159f91eefd2050b4.js": "6c552486242340b4097d4cfcce1dd176f1626cf2",
+    "/354.7015b0c1f10ca81a.js": "1cdf641e9d6fa0ebcf3898018124aa94cb4fdcb4",
+    "/416.16ccd1fafc573ee2.js": "8eec82de57f89f48edcc7e1e52f4737e7ee7556f",
+    "/489.42e3a7ec5e2b24c6.js": "efc644bd3421065199f1f4ca943bbb24a6cbc5c5",
+    "/542.e11c503428c1f217.js": "e4c31746cb3b03b6b278c84411e151e3197596eb",
+    "/632.30301c97c2a0dc12.js": "20aacb40508ef207d563c51231bd42e6641aee82",
+    "/735.408a5e9a62f221ec.js": "573bf1e2cd98cad710ad8942618c2a730e7af853",
+    "/776.8575117300e52157.js": "8c92f4106468a97de6b3f6b6023c76b1cff27637",
+    "/869.ba41d7420dd1ec8b.js": "24a89706ecdaff785324045e59d081062e7ad759",
+    "/889.9144b70737fabd2c.js": "c4c6a1109660add1e9942a0cf799f2a570884bd6",
+    "/assets/1.jpg": "94d70d788a2c570262ee5ec7db017aabe8b04eb7",
+    "/assets/2.gif": "3102c34697f30037b3647e17e8f86b86267c706c",
+    "/assets/QRcode.jpeg": "1ff81433f2d639e512c4a57a6eecc04b29a5b375",
+    "/assets/Ubon-Logo.jpg": "d42911bad1d66c2ac65ece824065016b87ada616",
+    "/assets/brands.jpeg": "34c209dba168c56a046bc416353e6184e628bdb5",
+    "/assets/icons/Ellipsis-1s-200px.gif": "b724a70a2c38cbaaa2e4d8579554e03dea35c874",
+    "/assets/icons/icon-128x128.png": "21b2b0db51f1f15a2b7dbb26a1d6777a0f31f0de",
+    "/assets/icons/icon-144x144.png": "541c02bc9933389ac42973919a04be170f1bc24b",
+    "/assets/icons/icon-152x152.png": "4c864175aa749f6ba62bbfda5b73bddaae3a42b3",
+    "/assets/icons/icon-192x192.png": "e0b49da848f6c49d51f6f4c83932a3ff49a37d22",
+    "/assets/icons/icon-384x384.png": "62d3fea2d0752a19fbddb8234d8d437ce4b8f8d1",
+    "/assets/icons/icon-512x512.png": "e2651c4b360a4892b738b5def7c93d876536b47f",
+    "/assets/icons/icon-72x72.png": "b2864e7c3d68bce8d4422eb6da400802957912b1",
+    "/assets/icons/icon-96x96.png": "1586103be2f2f544c3dfb609afda76782f9d8aea",
+    "/assets/icons/loading-buffering.gif": "0be8696573cee6e2d06b0ea5673cb0c12ea73335",
+    "/assets/scheme/1.jpeg": "c4aad7c53df050376b118c41438f936050d387f0",
+    "/assets/templates/invoice.html": "2f1dfb816637ccc86b28f07e6a1d2175cf820e40",
+    "/assets/yantra-logo.png": "0e60c2b8910c23f5f11bc87da0bd9590bac5c4cd",
+    "/common.7f98cc01e25b376d.js": "23e5a2eff489e451341b6aa91a4460423ab9d896",
+    "/favicon.ico": "81563c7820004fd2bc92520314fa062e6d292635",
+    "/fontawesome-webfont.8a7cb27d142e3e19.ttf": "13b1eab65a983c7a73bc7997c479d66943f7c6cb",
+    "/fontawesome-webfont.cf011583fb81df9f.woff": "28b782240b3e76db824e12c02754a9731a167527",
+    "/fontawesome-webfont.da909aa098b0ee2d.svg": "98a8aa5cf7d62c2eff5f07ede8d844b874ef06ed",
+    "/fontawesome-webfont.e9955780856cf8aa.woff2": "d6f48cba7d076fb6f2fd6ba993a75b9dc1ecbf0c",
+    "/index.html": "9f506b92ece46d8226e2645ef0129f361486feef",
+    "/main.3e0e5fc23038d7cd.js": "bb543bec9e56bee1886fd3e1826bef9cfd1ced43",
+    "/manifest.webmanifest": "c4bb433e0b2668d50d12ab908df1cbb71f8ab1ce",
+    "/polyfills.5fe6d4887b8262cd.js": "7e49e70561aa6b4d5e60fa85b465405bd1fcb0ca",
+    "/runtime.11e16c9166387287.js": "6c2d70ea183d94792a0cea6df0247453da345f9d",
+    "/scripts.6fdc802cf4e4227b.js": "e35f194f9c237397ea05db84644c4067a8634bab",
+    "/styles.4b01174a2673f541.css": "2c9c5e3bd7aadc63c09a7fbe7a60a4b09270f406"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

@@ -1,0 +1,272 @@
+<app-header></app-header>
+
+<section class="register-block ">
+    <div class="container">
+        <div class="row register-sec mt-5">
+            <div class="col-md-12 register-sec pb-0 pt-0">
+                <div class="form-group " *ngIf="customerList && customerList.length">
+                    <label for="userId" class="text-uppercase fw-bold">Select Product: </label>
+                    <ng-multiselect-dropdown [placeholder]="'Select Product to edit'" [settings]="dropdownSettings"
+                        [data]="productList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="username" class="">Search Product {{addNew ? 'To Insert New Stock' : 'To Update ExistingStock'}}: </label>
+                    <input type="text" class="form-control" [(ngModel)]='searchText'
+                        (ngModelChange)='searchModelChanged.next($event)' />
+                    <hr>
+                </div>
+                <select name="ProductDetail" [(ngModel)]='product' (ngModelChange)='patchProductForm()'
+                    class="form-control">
+                    <option value="">Search Product to select</option>
+                    <option [selected]="item == product" [ngValue]="item" *ngFor="let item of productList">id:
+                        {{item.ProductId}}/
+                        {{item.child_of ? 'Farzi' : item.Name}}/ Rs.{{item.Price}}/ Product Code: {{item.product_code}}
+                    </option>
+                </select> -->
+                <h2 class="text-center text-uppercase"> {{addNew ? 'Add New Stock' : 'Update Existing Stock'}} </h2>
+                <h2 class="text-center text-warning" *ngIf="product">
+                    <p class="text-primary">you are editing </p> "{{product.Name}}"
+                </h2>
+                <!-- <button *ngIf="product && !product.child_of" (click)="GlobalHttpService.saveChildProduct(product)"
+                    class="btn btn-danger float-left">Add Farzi Product</button> -->
+            </div>
+
+            <form class="register-form col-md-12" [formGroup]="ProductInsertForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">Product Name</label>
+                            <input type="text" formControlName="name" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['name'].errors }" />
+                            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                                <div *ngIf="f['name'].errors.required">Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">Youtube Video Link</label>
+                            <input type="text" formControlName="videolink" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['videolink'].errors }" />
+                        </div>
+                        <div class="form-group" *ngIf="productId">
+                            <label for="IsActive" class="text-uppercase" placement="top"
+                                ngbTooltip="Active hai kya, Test krne k liye no kro">IsActive </label>
+                            <select id="" class="form-control " formControlName="IsActive" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f.IsActive.errors }">
+                                <option value="0">In active</option>
+                                <option value="1">Active</option>
+                            </select>
+                            <div *ngIf="submitted && f.IsActive.errors" class="invalid-feedback">
+                                <div *ngIf="f.IsActive.errors.required">Is Active is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">Delivery Charges Category</label>
+                            <select id="" formControlName="dhc_category" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['dhc_category'].errors }">
+                                <option value="0">Free</option>
+                                <option value="1">5 percent</option>
+                            </select>
+                            <div *ngIf="submitted && f['dhc_category'].errors" class="invalid-feedback">
+                                <div *ngIf="f['dhc_category'].errors.required">This is required</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">search tags</label>
+                            <input type="text" formControlName="tags" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['tags'].errors }" />
+                            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback"> </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">Stock</label>
+                            <input type="number" formControlName="stock" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['stock'].errors }" />
+                            <div *ngIf="submitted && f['stock'].errors" class="invalid-feedback">
+                                <div *ngIf="f['stock'].errors.required">Stock is required</div>
+                                <div *ngIf="f['stock'].errors.min">Min value is 1 for new and 0 for old product</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">new stock</label>
+                            <input type="number" formControlName="newstock" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['newstock'].errors }" />
+                            <div *ngIf="submitted && f['newstock'].errors" class="invalid-feedback">
+                                <div *ngIf="f['newstock'].errors.required">newstock is required</div>
+                                <div *ngIf="f['newstock'].errors.min">Min value is 0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">subcategory</label>
+                            <select formControlName="SubCategoryId" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['SubCategoryId'].errors }">
+
+
+                                <option *ngFor="let subcategory of SubCategoryList" [value]="subcategory.SubcategoryId">
+                                    {{subcategory.Name}}
+                                </option>
+                            </select>
+
+
+
+                            <div *ngIf="submitted && f['SubCategoryId'].errors" class="invalid-feedback">
+                                <div *ngIf="f['SubCategoryId'].errors.required">SubCategoryId is required</div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">description</label>
+                            <input type="text" formControlName="description" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['description'].errors }" />
+                            <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                                <div *ngIf="f['description'].errors.required">Description is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">Price</label>
+                            <input type="number" formControlName="price" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['price'].errors }" />
+                            <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">
+                                <div *ngIf="f['price'].errors.required">price is required</div>
+                                <div *ngIf="f['price'].errors.min">min value is 1</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">landing</label>
+                            <input type="number" formControlName="landing_rate" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['landing_rate'].errors }" />
+                            <div *ngIf="submitted && f['landing_rate'].errors" class="invalid-feedback">
+                                <div *ngIf="f['landing_rate'].errors.min">min value is required or leave it empty</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">new price</label>
+                            <input type="number" formControlName="newprice" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['newprice'].errors }" />
+                            <div *ngIf="submitted && f['newprice'].errors" class="invalid-feedback">
+                                <div *ngIf="f['newprice'].errors.required">newprice is required</div>
+                                <div *ngIf="f['newprice'].errors.min">newprice is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">warranty in days</label>
+                            <input type="number" formControlName="WarrantyInDays" class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['WarrantyInDays'].errors }" />
+                            <div *ngIf="submitted && f['WarrantyInDays'].errors" class="invalid-feedback">
+                                <div *ngIf="f['WarrantyInDays'].errors.required">WarrantyInDays is required</div>
+                                <div *ngIf="f['WarrantyInDays'].errors.min">min value is 0</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname" class="text-uppercase">image</label>
+                            <input type="file" (change)="detectFiles($event)" formControlName="image"
+                                class="form-control"
+                                [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['image'].errors }" />
+                            <div *ngIf="submitted && f['image'].errors" class="invalid-feedback">
+                                <div *ngIf="f['image'].errors.required">image is required</div>
+                            </div>
+                        </div>
+                        <!-- radio button -->
+                        <div class="form-group">
+                            <label>
+                                <input type="radio" value="Male" formControlName="gender" id="1" [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['gender'].errors }"/>
+                                  <span>Male</span>
+                              </label>
+                              <label>
+                                  <input type="radio" value="Female" formControlName="gender" id="2" 
+                                  [ngClass]="{ 'is-valid':submitted, 'is-invalid': submitted && f['gender'].errors }" />
+                                  <span>Female</span>
+                              </label>
+                            <div *ngIf="submitted && f['gender'].errors" class="invalid-feedback">
+                                <div *ngIf="f['gender'].errors.required">gender is required</div>
+                            </div>
+                        </div>
+  <!-- end -->
+                        <div class="form-check">
+                            <button type="submit" class="btn btn-register mt-2 pull-right">Submit</button>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </form>
+
+
+
+            <div class="container mt-5" *ngIf="newstockProducts">
+                <div class="row">
+                    <div class="col-md-12 register-sec pb-0 pt-0">
+                        <h2 class="text-center text-uppercase">List Of New Inventory mai Jo Product Kiye Hai</h2>
+                    </div>
+                    <div class="col-md-3">
+                        <strong>Total New Stock: <b> {{totalNewStock || 0}}</b> </strong>
+                    </div>
+                    <div class="col-md-3">
+                        <strong>Total Amount: <b> {{totalNewAmount || 0}}</b> </strong>
+                    </div>
+                    <!-- <div class="col-md-4">
+                <button class="btn btn-warning pull-right text-white" (click)="applyInventory()">Apply Inventory</button>
+            </div> -->
+                    <!-- <div class="col-md-12" *ngIf="pendingAmountForUser">
+                <strong>Pending Amount For {{SelectedUser.name}}:
+                    <a class="" *ngIf="orderList && orderList.length" href="javascript:void(0);">
+                        Rs. {{pendingAmountForUser}}<i class="fa fa-whatsapp ft-30" aria-hidden="true"></i>
+                    </a>
+                </strong>
+            </div> -->
+                    <div class="col-md-12 table-responsive-sm">
+                        <table class="table table-striped text-center ">
+                            <thead class="pink-text">
+                                <tr>
+                                    <th scope="col">S No.</th>
+                                    <th scope="col">product Id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">P. Code</th>
+                                    <th scope="col">Model</th>
+                                    <th scope="col">Rate</th>
+                                    <th scope="col">New Stock</th>
+                                    <th scope="col">Created On</th>
+                                    <!-- <th scope="col">PlacedBy</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let product of newstockProducts; let i = index">
+                                    <th scope="row">{{i+1}} </th>
+                                    <td><a class="text-primary font-weight-bold"
+                                            (click)="patchInventoryProductForm(product)"
+                                            href="javascript:void(0)">{{product.product_id}} <i class="fa fa-edit"
+                                                aria-hidden="true"></i></a>
+                                    </td>
+                                    <td>{{product.name}}</td>
+                                    <td>{{product.product_code}}</td>
+                                    <td>{{product.ModelName}}</td>
+                                    <td class="font-weight-bold">{{product.newprice}}</td>
+                                    <td class="font-weight-bold" (click)="updateNewInventory(product)">
+                                        <a class="text-primary font-weight-bold"
+                                            (click)="patchInventoryProductForm(product)"
+                                            href="javascript:void(0)">{{product.newstock}} <i class="fa fa-plus"
+                                                aria-hidden="true"></i></a>
+                                    </td>
+                                    <td class="font-weight-bold" (click)="deleteInventory(product.product_id)">Delete
+                                        Product<i class="fa fa-trash ft-4 cursor-p" aria-hidden="true"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12 mb-5 mt-3">
+                        <button class="btn btn-register pull-right text-white" (click)="applyInventory()">Apply
+                            Inventory</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
